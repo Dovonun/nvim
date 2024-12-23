@@ -728,23 +728,27 @@ require('lazy').setup({
     end,
   },
 
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is.
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'folke/tokyonight.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
-    init = function()
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
-
-      -- You can configure highlights by doing something like:
-      vim.cmd.hi 'Comment gui=none'
-    end,
-  },
+  -- { -- You can easily change to a different colorscheme.
+  --   -- Change the name of the colorscheme plugin below, and then
+  --   -- change the command in the config to whatever the name of that colorscheme is.
+  --   --
+  --   -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
+  --   'folke/tokyonight.nvim',
+  --   priority = 900, -- Make sure to load this before all the other start plugins.
+  --   init = function()
+  --     -- Load the colorscheme here.
+  --     -- Like many other themes, this one has different styles, and you could load
+  --     -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+  --     vim.cmd.colorscheme 'tokyonight-night'
+  --
+  --     -- You can configure highlights by doing something like:
+  --     vim.cmd.hi 'Comment gui=none'
+  --   end,
+  -- },
+  { 'dasupradyumna/midnight.nvim', lazy = true, priority = 900 },
+  { 'ellisonleao/gruvbox.nvim', lazy = false, priority = 950, config = true, opts = {
+    transparent_mode = true,
+  } },
 
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
@@ -875,6 +879,33 @@ require('lazy').setup({
     },
   },
 })
+
+-- Colorscheme
+-- midnight transparency
+
+-- local function set_transparent_bg(groups)
+--   for _, group in ipairs(groups) do
+--     vim.cmd('highlight ' .. group .. ' guibg=none')
+--   end
+-- end
+--
+-- local highlight_groups = {
+--   'Normal',
+--   'NonText',
+--   'SignColumn',
+--   'MiniStatuslineModeNormal',
+--   'MiniStatuslineModeInsert',
+--   'MiniStatuslineModeVisual',
+--   'MiniStatuslineModeReplace',
+--   'MiniStatuslineModeCommand',
+--   'MiniStatuslineModeOther',
+--   'MiniStatuslineDevinfo',
+--   'MiniStatuslineFileinfo',
+--   'MiniStatuslineFilename',
+-- }
+--
+-- set_transparent_bg(highlight_groups)
+vim.cmd.colorscheme 'gruvbox'
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
